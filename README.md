@@ -5,6 +5,13 @@
 
 接下来将每天上传注释好的代码，以倒叙的形式吧~同时上传接下来每天新学习的代码资源
 
-ECharts-pie.py为使用ECharts绘画饼图
+ECharts-bar.py为使用ECharts绘画条形图
 
 ECharts-line.py为使用ECharts绘画折线图
+
+ECharts-pie.py为使用ECharts绘画饼图
+
+ECharts-radar.py为使用ECharts绘画雷达图
+
+ECharts-scatter.py为使用ECharts绘画散点图图
+
