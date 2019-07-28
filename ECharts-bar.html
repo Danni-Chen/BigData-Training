@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>bar</title><!--此处的title为网站标题,打开在浏览器上显示-->
+</head>
+<body>
+<div id="main" style="height:400px"></div><!--在画图之前，需要为ECharts准备一个DOM容器；此处定义一个高度为400px的DOM，还可定义宽度-->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script><!--这里使用script标签引入模块化单文件echarts.js，在线调用-->
+<script type="text/javascript">
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'//为模块加载器配置ECharts和所需图表的路径
+        }
+    });
+    require(
+            [
+                'echarts',//动态加载ECharts和所需的图表
+                'echarts/chart/bar'//加载bar模块就可以使用条形图，这里记住按需加载即可！
+            ],
+            function (ec) {
+                var myChart = ec.init(document.getElementById('main'));//初始化ECharts图表
+                var option = {//option变量用于存储图表的具体内容，包括各种配置项和数据
+                    xAxis : [//定义横轴
+                        {
+                            type : 'category',//设置坐标轴的类型（可选项有类目型category、数值型value、时间型time）
+                            data : ['周一','周二','周三','周四','周五','周六','周日']//定义横轴上的标注信息
+                        }
+                    ],
+                    yAxis : [//定义纵轴
+                        {
+                            type : 'value',//设置坐标轴的类型（可选项有类目型category、数值型value、时间型time）
+
+                        }
+                    ],
+                    series : [//设置图表的具体数据，此图标有两组数据，一组为最高气温，一组为最低气温
+                        {
+                            name:'最高气温',//定义这一组数据的名称
+                            type:'bar',//定义这一组数据呈现的图表类型为条形图
+                            stack: '总量',//设置数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加。此处设置之后，会将同一天的最高气温和最低气温堆叠在一个条形上一起显示，即原本有14个条，现在只剩下7个。
+                            data:[11, 11, 15, 13, 12, 13, 10],//用于传入具体的数值数据
+                            markPoint : {//用于标注特殊的点位
+                                data : [//用于指定标注哪些点位
+                                    {type : 'max', name: '最大值'},//通过设定type为max显示最大值，type的有效值为max，min，average
+                                    {type : 'min', name: '最小值'}//通过设定type为min显示最小值，type的有效值为max，min，average
+                                ]
+                            }
+
+                        },
+                        {
+                            name:'最低气温',//定义这一组数据的名称
+                            type:'bar',//定义这一组数据呈现的图表类型为条形图
+                            stack: '总量',//设置数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加。此处设置之后，会将同一天的最高气温和最低气温堆叠在一个条形上一起显示，即原本有14个条，现在只剩下7个。
+                            data:[1, -2, 2, 5, 3, 2, 0],//用于传入具体的数值数据
+                            markPoint : {//用于标注特殊的点位
+                                data : [//用于指定标注哪些点位
+                                    {type : 'max', name: '最大值'},//通过设定type为max显示最大值，type的有效值为max，min，average
+                                    {type : 'min', name: '最小值'}//通过设定type为min显示最小值，type的有效值为max，min，average
+                                ]
+                            }
+                        }
+                    ] };
+                myChart.setOption(option);//调用myChart的setOption方法将option数据传递进去，显示图表
+            }
+    );
+</script>
+</body>
+

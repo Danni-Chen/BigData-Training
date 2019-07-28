@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>radar</title><!--此处的title为网站标题,打开在浏览器上显示-->
+</head>
+<body>
+
+<div id="main" style="height:400px"></div><!--在画图之前，需要为ECharts准备一个DOM容器；此处定义一个高度为400px的DOM，还可定义宽度-->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script><!--这里使用script标签引入模块化单文件echarts.js，在线调用-->
+<script type="text/javascript">
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'//为模块加载器配置ECharts和所需图表的路径
+        }
+    });
+    require(
+            [
+                'echarts',//动态加载ECharts和所需的图表
+                'echarts/chart/radar' // //加载radar模块就可以使用雷达图，这里记住按需加载即可！
+            ],
+            function (ec) {
+                var myChart = ec.init(document.getElementById('main'));//初始化ECharts图表
+                var option = {//option变量用于存储图表的具体内容，包括各种配置项和数据
+                    title : {//给图表添加标题
+                        text: '预算 vs 开销',//定义图表的正标题
+                        subtext: '纯属虚构'//定义图表的副标题
+                    },
+                    tooltip : {//用于设置鼠标与图表的交互
+                        trigger: 'axis'//trigger表示鼠标的触发事件，显示消息提示，可选参数有item（只会显示该点的数据）和axis（显示该列下所有坐标轴所对应的数据）
+                    },
+                    legend: {//用于设置图例
+                        orient : 'vertical',//表示图例垂直放置
+                        x : 'right',//表示图例放在右边
+                        y : 'bottom',//表示图例放在底部
+                        data:['预算分配','实际开销']//设置图例的具体内容，这里的字段一定要和series的name一致！！
+                    },
+
+                    polar : [//设置极坐标系属性
+                        {
+                            indicator : [//用于定义雷达指标列表
+                                { text: '销售', max: 6000},//text标注每个极坐标的名称，max表示该极坐标的数值大小
+                                { text: '管理', max: 16000},
+                                { text: '信息技术', max: 30000},
+                                { text: '客服', max: 38000},
+                                { text: '研发', max: 52000},
+                                { text: '市场', max: 25000}
+                            ]
+                        }
+                    ],
+                    calculable : true,//设置是否根据窗口的大小自适应图表大小
+                    series : [//设置图表的具体数据，此图标有两组数据，一组为预算数据，一组为开销数据
+                        {
+                            name: '预算 vs 开销',//定义这一组数据的名称
+                            type: 'radar',//定义这一组数据呈现的图表类型为雷达图
+                            itemStyle: {
+                                normal: {
+                                    areaStyle: {
+                                        type: 'default'//设置风格，此处设定了填充，并且填充颜色与线条颜色一致
+                                    }
+                                }
+                            },
+                            data : [//用于传入具体的数值数据
+                                {
+                                    value : [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name : '预算分配'
+                                },
+                                {
+                                    value : [5000, 14000, 28000, 31000, 42000, 21000],
+                                    name : '实际开销'
+                                }
+                            ]
+                        }
+                    ]
+                };
+                myChart.setOption(option);//调用myChart的setOption方法将option数据传递进去，显示图表
+            }
+    );
+</script>
+</body>
