@@ -18,3 +18,7 @@ ECharts-scatter.html为使用ECharts绘画散点图图
 DataVisualization.py为数据可视化学习代码。其中包括自定义数据绘画y=x^2和sin曲线；使用$数学公式$绘画sin曲线；外部导入数据绘画散点图折线图、饼图、箱线图、直方图；在一个画布绘制多个子图等等内容
 
 sklearn-Kmeans.py为调用sklearn库的Kmeans类和load_iris鸢尾花数据集完成一次调库的练习操作代码。sklearn是scikit-learn的简称，是一个基于Python的第三方模块，集成了一些常用的机器学习方法，在进行机器学习任务时，只需要简单的调用sklearn库中提供的模块就能完成大多数的机器学习任务！
+
+sklearn-DecisionTree.py为调用sklearn库的tree类和lenses.txt隐形眼镜数据集完成调库实现决策树的练习操作代码。
+
+*以上所有练习需要的数据文件均存放在dataset分支上
