@@ -23,4 +23,6 @@ sklearn-DecisionTree.py为调用sklearn库的tree类和lenses.txt隐形眼镜数
 
 sklearn-practice.py为调用sklearn库的SVM类和load_breast_cancer乳腺癌数据集完成调库实现支持向量机的练习操作代码，还包括准确率、精度、召回率、F1值等多种评价函数的使用。
 
+DecisionTree.py为不调用sklearn库实现决策树算法（结合年龄、工作、房子、信贷情况四方面信息决定是否放贷款的经典案例），前提需要先了解决策树的原理。
+
 *以上所有练习需要的数据文件均以“xxx需要的xxx数据”形式说明，存放在dataset分支上
